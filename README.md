@@ -101,10 +101,6 @@ Conception et réalisation - Fait avec ❤️ au service de l'éducation numéri
 
 Ce projet est développé dans un cadre éducatif. Pour toute suggestion ou amélioration, n'hésitez pas à ouvrir une issue.
 
-## 📞 Contact
-
-Pour plus d'informations, veuillez contacter l'établissement scolaire.
-
 ---
 
 ⭐ Si ce projet vous aide dans votre apprentissage, n'hésitez pas à laisser une étoile !
