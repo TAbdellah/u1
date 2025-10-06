@@ -21,6 +21,7 @@
     .logo-placeholder i{font-size:36px;color:#fff}
     h1{font-size:clamp(1.4rem,3.2vw,2.4rem);margin-bottom:6px}
     p.lead{color:rgba(255,255,255,0.9);margin-bottom:18px}
+    .section-title{color:#fff;font-size:1.3rem;margin:30px 0 15px 0;padding-left:10px;border-left:4px solid rgba(255,255,255,0.8)}
     .exercises-grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -28,15 +29,17 @@
       margin-top:18px;
     }
     .exercise-card{
-      background:#fff;border-radius:14px;padding:18px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 30px rgba(0,0,0,0.12);position:relative;overflow:hidden;
+      background:#fff;border-radius:14px;padding:18px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 30px rgba(0,0,0,0.12);position:relative;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;
     }
+    .exercise-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.18)}
     .exercise-top{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
     .exercise-icon{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff}
     .exercise-number{background:linear-gradient(135deg,#ff6b6b,#feca57);color:#fff;padding:6px 10px;border-radius:18px;font-weight:700;font-size:.85rem}
     .exercise-title{font-size:1.05rem;font-weight:700;color:#2c3e50}
     .exercise-desc{color:#666;font-size:.95rem;line-height:1.3;text-align:left}
     .start-row{display:flex;justify-content:center;align-items:center;margin-top:auto}
-    .start-btn{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:8px 14px;border-radius:22px;border:none;display:inline-flex;align-items:center;gap:8px;font-weight:600;cursor:pointer}
+    .start-btn{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:8px 14px;border-radius:22px;border:none;display:inline-flex;align-items:center;gap:8px;font-weight:600;cursor:pointer;transition:transform 0.2s}
+    .start-btn:hover{transform:scale(1.05)}
     .footer{margin-top:40px;padding:0;border-radius:16px;background:#fff;color:#333;text-align:center;line-height:1.6;box-shadow:0 8px 30px rgba(0,0,0,0.12);overflow:hidden}
     .footer-content{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:24px 20px;font-size:0.95rem}
     .footer-content strong{display:block;font-size:1.1rem;margin-bottom:8px;font-weight:700}
@@ -57,9 +60,10 @@
     </header>
 
     <main>
+      <!-- Section 1: Composants et périphériques -->
+      <h2 class="section-title"><i class="fas fa-computer"></i> Composants et périphériques</h2>
       <section class="exercises-grid">
-        <!-- 1 -->
-        <a class="exercise-card" href="Exercice 1.html" target="_blank">
+        <a class="exercise-card" href="Exercice1_ordinateur.html" target="_blank">
           <div class="exercise-top">
             <div class="exercise-icon"><i class="fas fa-computer"></i></div>
             <div class="exercise-number">Exercice 1</div>
@@ -71,8 +75,7 @@
           </div>
         </a>
 
-        <!-- 2 -->
-        <a class="exercise-card" href="Exercice 2.html" target="_blank">
+        <a class="exercise-card" href="Exercice2_peripheriques.html" target="_blank">
           <div class="exercise-top">
             <div class="exercise-icon"><i class="fas fa-plug"></i></div>
             <div class="exercise-number">Exercice 2</div>
@@ -84,8 +87,7 @@
           </div>
         </a>
 
-        <!-- 3 -->
-        <a class="exercise-card" href="Exercice 3.html" target="_blank">
+        <a class="exercise-card" href="Exercice3_peripheriques+fonctions.html" target="_blank">
           <div class="exercise-top">
             <div class="exercise-icon"><i class="fas fa-link"></i></div>
             <div class="exercise-number">Exercice 3</div>
@@ -97,8 +99,7 @@
           </div>
         </a>
 
-        <!-- 4 -->
-        <a class="exercise-card" href="Exercice 4.html" target="_blank">
+        <a class="exercise-card" href="Exercice4_entree+stortie.html" target="_blank">
           <div class="exercise-top">
             <div class="exercise-icon"><i class="fas fa-arrows-alt-h"></i></div>
             <div class="exercise-number">Exercice 4</div>
@@ -110,8 +111,7 @@
           </div>
         </a>
 
-        <!-- 5 -->
-        <a class="exercise-card" href="Exercice 5.html" target="_blank">
+        <a class="exercise-card" href="Exercice5_ES+Stockage.html" target="_blank">
           <div class="exercise-top">
             <div class="exercise-icon"><i class="fas fa-th-large"></i></div>
             <div class="exercise-number">Exercice 5</div>
@@ -122,9 +122,12 @@
             <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
           </div>
         </a>
+      </section>
 
-        <!-- 6 -->
-        <a class="exercise-card" href="Exercice 6.html" target="_blank">
+      <!-- Section 2: Connectivité -->
+      <h2 class="section-title"><i class="fas fa-plug-circle-bolt"></i> Connectivité</h2>
+      <section class="exercises-grid">
+        <a class="exercise-card" href="Exercice6_connectivite1.html" target="_blank">
           <div class="exercise-top">
             <div class="exercise-icon"><i class="fas fa-plug-circle-bolt"></i></div>
             <div class="exercise-number">Exercice 6</div>
@@ -136,8 +139,7 @@
           </div>
         </a>
 
-        <!-- 7 -->
-        <a class="exercise-card" href="Exercice 7.html" target="_blank">
+        <a class="exercise-card" href="Exercice7_connectivite1.html" target="_blank">
           <div class="exercise-top">
             <div class="exercise-icon"><i class="fas fa-ethernet"></i></div>
             <div class="exercise-number">Exercice 7</div>
@@ -148,9 +150,12 @@
             <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
           </div>
         </a>
+      </section>
 
-        <!-- 8 -->
-        <a class="exercise-card" href="Exercice 8.html" target="_blank">
+      <!-- Section 3: Unités de mesure -->
+      <h2 class="section-title"><i class="fas fa-balance-scale"></i> Unités de mesure</h2>
+      <section class="exercises-grid">
+        <a class="exercise-card" href="Exercice8_uniteesdeMesures.html" target="_blank">
           <div class="exercise-top">
             <div class="exercise-icon"><i class="fas fa-sort-amount-up"></i></div>
             <div class="exercise-number">Exercice 8</div>
@@ -162,21 +167,23 @@
           </div>
         </a>
 
-        <!-- 9 -->
-        <a class="exercise-card" href="Exercice 9.html" target="_blank">
+        <a class="exercise-card" href="Exercice9_les unites de mesures.html" target="_blank">
           <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-project-diagram"></i></div>
+            <div class="exercise-icon"><i class="fas fa-calculator"></i></div>
             <div class="exercise-number">Exercice 9</div>
-            <div class="exercise-title">Traitement des données</div>
+            <div class="exercise-title">Les unités de mesure</div>
           </div>
-          <p class="exercise-desc">Comprendre le parcours des données du clavier vers l'écran.</p>
+          <p class="exercise-desc">Approfondir la compréhension des unités de mesure informatiques.</p>
           <div class="start-row">
             <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
           </div>
         </a>
+      </section>
 
-        <!-- 10 -->
-        <a class="exercise-card" href="Exercice 10.html" target="_blank">
+      <!-- Section 4: Composants internes -->
+      <h2 class="section-title"><i class="fas fa-microchip"></i> Composants internes</h2>
+      <section class="exercises-grid">
+        <a class="exercise-card" href="Exercice10_composantesInterne.html" target="_blank">
           <div class="exercise-top">
             <div class="exercise-icon"><i class="fas fa-microchip"></i></div>
             <div class="exercise-number">Exercice 10</div>
@@ -188,8 +195,7 @@
           </div>
         </a>
 
-        <!-- 11 -->
-        <a class="exercise-card" href="Exercice 11.html" target="_blank">
+        <a class="exercise-card" href="Exercice11_composantesInterne+fonctions.html" target="_blank">
           <div class="exercise-top">
             <div class="exercise-icon"><i class="fas fa-puzzle-piece"></i></div>
             <div class="exercise-number">Exercice 11</div>
@@ -201,14 +207,145 @@
           </div>
         </a>
 
-        <!-- 12 -->
-        <a class="exercise-card" href="Exercice 12.html" target="_blank">
+        <a class="exercise-card" href="Exercice12_composantesInterne+noms.html" target="_blank">
           <div class="exercise-top">
             <div class="exercise-icon"><i class="fas fa-search"></i></div>
             <div class="exercise-number">Exercice 12</div>
             <div class="exercise-title">Nommer les composants</div>
           </div>
           <p class="exercise-desc">Regarder l'image du composant et écrire son nom correct.</p>
+          <div class="start-row">
+            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </a>
+      </section>
+
+      <!-- Section 5: Systèmes et codage -->
+      <h2 class="section-title"><i class="fas fa-binary"></i> Systèmes et codage</h2>
+      <section class="exercises-grid">
+        <a class="exercise-card" href="Exercice13_binaire.html" target="_blank">
+          <div class="exercise-top">
+            <div class="exercise-icon"><i class="fas fa-binary"></i></div>
+            <div class="exercise-number">Exercice 13</div>
+            <div class="exercise-title">Système binaire</div>
+          </div>
+          <p class="exercise-desc">Comprendre et manipuler le système binaire.</p>
+          <div class="start-row">
+            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </a>
+
+        <a class="exercise-card" href="Exercice14_systeme_informatique.html" target="_blank">
+          <div class="exercise-top">
+            <div class="exercise-icon"><i class="fas fa-desktop"></i></div>
+            <div class="exercise-number">Exercice 14</div>
+            <div class="exercise-title">Système informatique</div>
+          </div>
+          <p class="exercise-desc">Découvrir l'architecture globale d'un système informatique.</p>
+          <div class="start-row">
+            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </a>
+      </section>
+
+      <!-- Section 6: Bureautique -->
+      <h2 class="section-title"><i class="fas fa-window-maximize"></i> Bureautique</h2>
+      <section class="exercises-grid">
+        <a class="exercise-card" href="exercice15_bureau_windows.html" target="_blank">
+          <div class="exercise-top">
+            <div class="exercise-icon"><i class="fas fa-window-maximize"></i></div>
+            <div class="exercise-number">Exercice 15</div>
+            <div class="exercise-title">Bureau Windows</div>
+          </div>
+          <p class="exercise-desc">Se familiariser avec l'environnement du bureau Windows.</p>
+          <div class="start-row">
+            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </a>
+
+        <a class="exercise-card" href="exercice16_elements_bureau.html" target="_blank">
+          <div class="exercise-top">
+            <div class="exercise-icon"><i class="fas fa-icons"></i></div>
+            <div class="exercise-number">Exercice 16</div>
+            <div class="exercise-title">Éléments du bureau</div>
+          </div>
+          <p class="exercise-desc">Identifier les différents éléments présents sur le bureau.</p>
+          <div class="start-row">
+            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </a>
+
+        <a class="exercise-card" href="exercice17_noms_des_systemes_d'exploitation.html" target="_blank">
+          <div class="exercise-top">
+            <div class="exercise-icon"><i class="fas fa-laptop-code"></i></div>
+            <div class="exercise-number">Exercice 17</div>
+            <div class="exercise-title">Systèmes d'exploitation</div>
+          </div>
+          <p class="exercise-desc">Reconnaître les différents systèmes d'exploitation.</p>
+          <div class="start-row">
+            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </a>
+
+        <a class="exercise-card" href="exercice18_système_d’exploitation l’appareil.html" target="_blank">
+          <div class="exercise-top">
+            <div class="exercise-icon"><i class="fas fa-mobile-alt"></i></div>
+            <div class="exercise-number">Exercice 18</div>
+            <div class="exercise-title">Système et appareil</div>
+          </div>
+          <p class="exercise-desc">Associer chaque système d'exploitation à son appareil.</p>
+          <div class="start-row">
+            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </a>
+      </section>
+
+      <!-- Section 7: Réseaux -->
+      <h2 class="section-title"><i class="fas fa-network-wired"></i> Réseaux informatiques</h2>
+      <section class="exercises-grid">
+        <a class="exercise-card" href="Exercice19_équipements_réseau.html" target="_blank">
+          <div class="exercise-top">
+            <div class="exercise-icon"><i class="fas fa-server"></i></div>
+            <div class="exercise-number">Exercice 19</div>
+            <div class="exercise-title">Équipements réseau</div>
+          </div>
+          <p class="exercise-desc">Découvrir les différents équipements utilisés dans un réseau.</p>
+          <div class="start-row">
+            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </a>
+
+        <a class="exercise-card" href="Exercice20_equipement_LAN.html" target="_blank">
+          <div class="exercise-top">
+            <div class="exercise-icon"><i class="fas fa-sitemap"></i></div>
+            <div class="exercise-number">Exercice 20</div>
+            <div class="exercise-title">Équipement LAN</div>
+          </div>
+          <p class="exercise-desc">Identifier les équipements spécifiques d'un réseau local (LAN).</p>
+          <div class="start-row">
+            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </a>
+
+        <a class="exercise-card" href="Exercice21_nom_des_equipements_LAN.html" target="_blank">
+          <div class="exercise-top">
+            <div class="exercise-icon"><i class="fas fa-tag"></i></div>
+            <div class="exercise-number">Exercice 21</div>
+            <div class="exercise-title">Nom des équipements LAN</div>
+          </div>
+          <p class="exercise-desc">Nommer correctement les équipements d'un réseau local.</p>
+          <div class="start-row">
+            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </a>
+
+        <a class="exercise-card" href="Exercice22_les_mots_croisee_du_réseau _local.html" target="_blank">
+          <div class="exercise-top">
+            <div class="exercise-icon"><i class="fas fa-th"></i></div>
+            <div class="exercise-number">Exercice 22</div>
+            <div class="exercise-title">Mots croisés du réseau</div>
+          </div>
+          <p class="exercise-desc">Résoudre des mots croisés sur le vocabulaire des réseaux locaux.</p>
           <div class="start-row">
             <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
           </div>
