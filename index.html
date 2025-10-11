@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Exercices – Unité 1 : Environnement matériel d'un système informatique</title>
+  <title>Exercices — Unité 1 : Environnement matériel d'un système informatique</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
@@ -48,15 +48,45 @@
     .footer-bottom .author{color:#667eea;font-weight:600;margin-top:6px;display:inline-block}
     .footer-bottom .heart{color:#e74c3c;display:inline-block;animation:heartbeat 1.5s ease-in-out infinite}
     @keyframes heartbeat{0%,100%{transform:scale(1)}10%,30%{transform:scale(1.1)}20%,40%{transform:scale(1)}}
-    @media (max-width:600px){body{padding:12px}.exercise-top{gap:8px}}
+    .cours-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      background:rgba(255,255,255,0.95);
+      color:#667eea;
+      padding:14px 28px;
+      border-radius:30px;
+      text-decoration:none;
+      font-weight:700;
+      font-size:1.05rem;
+      margin-top:20px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.15);
+      transition:all 0.3s ease;
+      border:2px solid rgba(255,255,255,0.3);
+    }
+    .cours-btn:hover{
+      transform:translateY(-3px) scale(1.05);
+      box-shadow:0 10px 30px rgba(0,0,0,0.25);
+      background:#fff;
+    }
+    .cours-btn i{
+      font-size:1.3rem;
+      animation:bounce 2s ease-in-out infinite;
+    }
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+    @media (max-width:600px){body{padding:12px}.exercise-top{gap:8px}.cours-btn{padding:12px 22px;font-size:0.95rem}}
   </style>
 </head>
 <body>
   <div class="container">
     <header class="header">
       <div class="logo-placeholder"><i class="fas fa-graduation-cap"></i></div>
-      <h1>Unité 1 – Environnement matériel d'un système informatique</h1>
+      <h1>Unité 1 — Environnement matériel d'un système informatique</h1>
       <p class="lead">Série d'exercices interactifs. Cliquez sur « Démarrer » pour ouvrir un exercice dans une nouvelle fenêtre.</p>
+      <a href="https://tabdellah.github.io/cours/" target="_blank" class="cours-btn">
+        <i class="fas fa-book-open"></i>
+        <span>Accéder aux Cours</span>
+      </a>
     </header>
 
     <main>
@@ -287,7 +317,7 @@
           </div>
         </a>
 
-        <a class="exercise-card" href="exercice18_système_d’exploitation l’appareil.html" target="_blank">
+        <a class="exercise-card" href="exercice18_système_d'exploitation l'appareil.html" target="_blank">
           <div class="exercise-top">
             <div class="exercise-icon"><i class="fas fa-mobile-alt"></i></div>
             <div class="exercise-number">Exercice 18</div>
@@ -356,7 +386,7 @@
     <footer class="footer">
       <div class="footer-content">
         <strong>© 2025-2026 Tous droits réservés</strong>
-        Académie Régionale de l'Éducation et de la Formation – Région Souss Massa<br>
+        Académie Régionale de l'Éducation et de la Formation — Région Souss Massa<br>
         Direction Provinciale Inzegane Aït Melloul<br>
         Collège Othmane Ibn Affane
       </div>
