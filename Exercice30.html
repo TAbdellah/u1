@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice - Composants Informatiques</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        .info-section {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .info-field { display: flex; flex-direction: column; }
+        .info-field label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .info-field input,
+        .info-field select {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        .info-field select {
+            background: white url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat;
+            background-position: right 5px center;
+            background-size: 20px;
+            appearance: none;
+            padding-right: 30px;
+            cursor: pointer;
+        }
+        h1 { text-align: center; color: #333; margin-bottom: 10px; font-size: 28px; }
+        .instructions {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            line-height: 1.6;
+        }
+        .bareme-section {
+            background: #e7f3ff;
+            border: 2px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .bareme-section h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .bareme-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .bareme-table th,
+        .bareme-table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #667eea;
+            font-weight: 600;
+        }
+        .bareme-table th {
+            background: #667eea;
+            color: white;
+        }
+        .bareme-table tr:nth-child(even) {
+            background: #f0f4ff;
+        }
+        .warning-alert {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+        .warning-alert.show { display: block; }
+        .questions-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .question-card {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        .question-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+        .question-number {
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .question-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .question-fonction {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #555;
+            border-left: 3px solid #667eea;
+            line-height: 1.4;
+        }
+        .form-group { margin-bottom: 12px; }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            background: white url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat;
+            background-position: right 5px center;
+            background-size: 20px;
+            appearance: none;
+            padding-right: 30px;
+            cursor: pointer;
+        }
+        .form-group select:disabled {
+            background-color: #e9ecef;
+            color: #999;
+            cursor: not-allowed;
+            border-color: #ccc;
+        }
+        .form-group select.correct {
+            border-color: #28a745;
+            background-color: #d4edda;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 5px center;
+            background-size: 20px;
+        }
+        .form-group select.incorrect {
+            border-color: #dc3545;
+            background-color: #f8d7da;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 5px center;
+            background-size: 20px;
+        }
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        button {
+            padding: 12px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        .btn-print {
+            background: #28a745;
+            color: white;
+        }
+        .btn-print:hover {
+            background: #218838;
+        }
+        .results {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .results.show { display: block; }
+        .results h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .result-item {
+            padding: 12px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 6px;
+            border-left: 4px solid #ddd;
+            font-size: 14px;
+        }
+        .result-item.correct {
+            border-left-color: #28a745;
+            background: #f0fff4;
+        }
+        .result-item.incorrect {
+            border-left-color: #dc3545;
+            background: #fff5f5;
+        }
+        .correct-answer {
+            color: #28a745;
+            font-weight: 600;
+        }
+        .incorrect-answer {
+            color: #dc3545;
+            font-weight: 600;
+        }
+        .score-summary {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .score-summary .percentage {
+            font-size: 24px;
+            color: #667eea;
+        }
+        .score-note {
+            font-size: 32px;
+            color: #28a745;
+            margin-top: 10px;
+        }
+        @media print {
+            body { background: white; }
+            .container { box-shadow: none; max-width: 100%; }
+            .button-group { display: none; }
+            .instructions { display: none; }
+            .questions-container { display: block; }
+            .question-card { page-break-inside: avoid; margin-bottom: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Exercice Interactif - Composants Informatiques</h1>
+        
+        <div class="info-section">
+            <h3 style="margin-bottom: 15px; color: #333;">📝 Informations personnelles</h3>
+            <div class="info-grid">
+                <div class="info-field">
+                    <label for="nomComplet">Nom complet</label>
+                    <input type="text" id="nomComplet" placeholder="Aziz ben Aziz">
+                </div>
+                <div class="info-field">
+                    <label for="classe">Classe</label>
+                    <select id="classe">
+                        <option value="">-- Sélectionner une classe --</option>
+                        <option value="2/1">2/1</option>
+                        <option value="2/2">2/2</option>
+                        <option value="2/3">2/3</option>
+                        <option value="2/4">2/4</option>
+                        <option value="2/5">2/5</option>
+                        <option value="2/6">2/6</option>
+                        <option value="2/7">2/7</option>
+                        <option value="2/8">2/8</option>
+                        <option value="2/9">2/9</option>
+                    </select>
+                </div>
+                <div class="info-field">
+                    <label for="groupe">Groupe</label>
+                    <select id="groupe">
+                        <option value="">-- Sélectionner un groupe --</option>
+                        <option value="G1">G1</option>
+                        <option value="G2">G2</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <p class="instructions">Pour chaque composant, déterminez s'il est <strong>Interne ou Externe</strong> et indiquez sa <strong>Catégorie</strong>. Les composants sont randomisés à chaque ouverture!</p>
+
+        <div class="bareme-section">
+            <h3>📊 Barème de Notation</h3>
+            <table class="bareme-table">
+                <thead>
+                    <tr>
+                        <th>Note /20</th>
+                        <th>Pourcentage</th>
+                        <th>Appréciation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>18-20</strong></td>
+                        <td>90-100%</td>
+                        <td><strong>Excellent (A)</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>15-17</strong></td>
+                        <td>75-89%</td>
+                        <td><strong>Très Bien (B)</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>12-14</strong></td>
+                        <td>60-74%</td>
+                        <td><strong>Bien (C)</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>10-11</strong></td>
+                        <td>50-59%</td>
+                        <td><strong>Passable (D)</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>0-9</strong></td>
+                        <td>0-49%</td>
+                        <td><strong>Insuffisant (F)</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="warning-alert" id="warningAlert">
+            ⚠️ Vous avez laissé des champs vides! Veuillez compléter correctement vos réponses avant de vérifier.
+        </div>
+
+        <div class="questions-container" id="questionsContainer"></div>
+
+        <div class="button-group">
+            <button class="btn-primary" onclick="verifierReponses()">✓ Vérifier mes réponses</button>
+            <button class="btn-secondary" onclick="reinitialiser()">↻ Réinitialiser</button>
+            <button class="btn-print" id="printBtn" style="display:none;" onclick="window.print()">🖨️ Imprimer</button>
+        </div>
+
+        <div class="results" id="results">
+            <h2>📊 Résultats</h2>
+            <div id="resultsList"></div>
+            <div class="score-summary">
+                Score : <span id="scoreText">0/30</span><br>
+                <span class="percentage" id="percentageText">0%</span>
+                <div class="score-note">Note: <span id="noteScore">0</span>/20</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const allData = [
+            { composant: "Processeur (CPU)", fonction: "Traite les données et exécute les instructions", type: "Interne", categorie: "Traitement" },
+            { composant: "Carte mère", fonction: "Relie et fait communiquer tous les composants internes", type: "Interne", categorie: "Traitement / Support" },
+            { composant: "Mémoire vive (RAM)", fonction: "Stocke temporairement les données et programmes en cours d'utilisation", type: "Interne", categorie: "Stockage temporaire" },
+            { composant: "Disque interne(HDD / SSD)", fonction: "Stocke les données et logiciels de façon permanente", type: "Interne", categorie: "Stockage" },
+            { composant: "Carte graphique (GPU)", fonction: "Traite les données visuelles comme les images, vidéos et affichage", type: "Interne", categorie: "Traitement / Sortie" },
+            { composant: "Écran tactile", fonction: "Affiche et permet l'interaction par le toucher", type: "Externe", categorie: "Entrée / Sortie" },
+            { composant: "Alimentation (PSU)", fonction: "Fournit l'énergie électrique aux composants", type: "Interne", categorie: "Support" },
+            { composant: "Carte mémoire", fonction: "Stocke les données de façon amovible et portable", type: "Externe", categorie: "Stockage" },
+            { composant: "Clavier", fonction: "Permet de saisir des données et des commandes", type: "Externe", categorie: "Entrée" },
+            { composant: "Souris", fonction: "Permet de pointer, sélectionner et contrôler les éléments à l'écran", type: "Externe", categorie: "Entrée" },
+            { composant: "Écran (Moniteur)", fonction: "Affiche les résultats et informations", type: "Externe", categorie: "Sortie" },
+            { composant: "Imprimante", fonction: "Produit un document papier à partir d'un fichier numérique", type: "Externe", categorie: "Sortie" },
+            { composant: "Scanner", fonction: "Numérise des documents ou images", type: "Externe", categorie: "Entrée" },
+            { composant: "Clé USB", fonction: "Stocke et transfère des fichiers", type: "Externe", categorie: "Stockage" },
+            { composant: "Vidéo-projecteur", fonction: "Affiche les images et vidéos sur un écran ou un mur", type: "Externe", categorie: "Sortie" },
+            { composant: "Microphone", fonction: "Enregistre le son ou la voix", type: "Externe", categorie: "Entrée" },
+            { composant: "Caméra web(Webcam)", fonction: "Capture des images ou vidéos", type: "Externe", categorie: "Entrée" },
+            { composant: "Manette de jeu", fonction: "Contrôle les jeux et applications interactives", type: "Externe", categorie: "Entrée" },
+            { composant: "Carte réseau", fonction: "Permet la connexion à Internet et aux réseaux", type: "Interne", categorie: "Traitement" },
+            { composant: "Haut-parleurs", fonction: "Restitue le son", type: "Externe", categorie: "Sortie" }
+        ];
+
+        let data = [];
+        let userAnswers = {};
+
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function createQuestions() {
+            data = shuffleArray(allData);
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '';
+            userAnswers = {};
+
+            data.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.innerHTML = `
+                    <div class="question-number">${index + 1}</div>
+                    <div class="question-title">${item.composant}</div>
+                    <div class="question-fonction"><strong>Fonction:</strong> ${item.fonction}</div>
+                    
+                    <div class="form-group">
+                        <label>Type de périphérique</label>
+                        <select class="type-select" data-index="${index}" data-correct="${item.type}">
+                            <option value="">-- Sélectionner --</option>
+                            <option value="Interne">Interne</option>
+                            <option value="Externe">Externe</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Catégorie</label>
+                        <select class="cat-select" data-index="${index}" data-correct="${item.categorie}" disabled>
+                            <option value="">-- Sélectionner --</option>
+                            <option value="Entrée">Entrée</option>
+                            <option value="Sortie">Sortie</option>
+                            <option value="Entrée / Sortie">Entrée / Sortie</option>
+                            <option value="Stockage">Stockage</option>
+                        </select>
+                    </div>
+                `;
+                container.appendChild(card);
+                userAnswers[index] = { type: '', categorie: '' };
+            });
+
+            document.querySelectorAll('.type-select').forEach(select => {
+                select.addEventListener('change', function() {
+                    const idx = this.dataset.index;
+                    userAnswers[idx].type = this.value;
+                    const catSelect = document.querySelector(`.cat-select[data-index="${idx}"]`);
+                    catSelect.disabled = this.value !== 'Externe';
+                    if (this.value !== 'Externe') {
+                        catSelect.value = '';
+                        userAnswers[idx].categorie = '';
+                    }
+                });
+            });
+
+            document.querySelectorAll('.cat-select').forEach(select => {
+                select.addEventListener('change', function() {
+                    userAnswers[this.dataset.index].categorie = this.value;
+                });
+            });
+        }
+
+        function verifierReponses() {
+            const nom = document.getElementById('nomComplet').value;
+            const classe = document.getElementById('classe').value;
+            const groupe = document.getElementById('groupe').value;
+
+            if (!nom || !classe || !groupe) {
+                alert('⚠️ Remplissez vos informations!');
+                return;
+            }
+
+            let ok = true;
+            for (let i = 0; i < data.length; i++) {
+                if (!userAnswers[i].type || (userAnswers[i].type === 'Externe' && !userAnswers[i].categorie)) {
+                    ok = false;
+                    break;
+                }
+            }
+
+            if (!ok) {
+                document.getElementById('warningAlert').classList.add('show');
+                setTimeout(() => document.getElementById('warningAlert').classList.remove('show'), 4000);
+                return;
+            }
+
+            const resultsList = document.getElementById('resultsList');
+            resultsList.innerHTML = '';
+            let score = 0;
+
+            data.forEach((item, index) => {
+                const typeOk = userAnswers[index].type === item.type;
+                let catOk = item.type === 'Interne' ? true : userAnswers[index].categorie === item.categorie;
+
+                const typeEl = document.querySelector(`.type-select[data-index="${index}"]`);
+                const catEl = document.querySelector(`.cat-select[data-index="${index}"]`);
+
+                typeEl.classList.toggle('correct', typeOk);
+                typeEl.classList.toggle('incorrect', !typeOk);
+                if (catEl && item.type === 'Externe') {
+                    catEl.classList.toggle('correct', catOk);
+                    catEl.classList.toggle('incorrect', !catOk);
+                }
+
+                if (typeOk) score++;
+                if (catOk && item.type === 'Externe') score++;
+
+                const res = document.createElement('div');
+                res.className = `result-item ${typeOk && catOk ? 'correct' : 'incorrect'}`;
+                let html = `<strong>${index + 1}. ${item.composant}</strong><br>Type: <span class="${typeOk ? 'correct-answer' : 'incorrect-answer'}">${userAnswers[index].type || '?'} ${typeOk ? '✓' : '✗'}</span><br>`;
+                if (item.type === 'Externe') {
+                    html += `Catégorie: <span class="${catOk ? 'correct-answer' : 'incorrect-answer'}">${userAnswers[index].categorie || '?'} ${catOk ? '✓' : '✗'}</span>`;
+                } else {
+                    html += `Catégorie: <span style="color:#999">N/A</span>`;
+                }
+                res.innerHTML = html;
+                resultsList.appendChild(res);
+            });
+
+            const total = data.length + data.filter(d => d.type === 'Externe').length;
+            const pct = Math.round((score / total) * 100);
+            const note = Math.round((score / total) * 20);
+
+            let appreciation = '';
+            if (note >= 18) appreciation = 'Excellent (A) 🏆';
+            else if (note >= 15) appreciation = 'Très Bien (B) ⭐';
+            else if (note >= 12) appreciation = 'Bien (C) 👍';
+            else if (note >= 10) appreciation = 'Passable (D) 📚';
+            else appreciation = 'Insuffisant (F) ❌';
+
+            document.getElementById('scoreText').textContent = `${score}/${total}`;
+            document.getElementById('percentageText').textContent = `${pct}%`;
+            document.getElementById('noteScore').textContent = note;
+            
+            const summ = document.querySelector('.score-summary');
+            summ.innerHTML = `Score : <span id="scoreText">${score}/${total}</span><br>
+                <span class="percentage" id="percentageText">${pct}%</span>
+                <div class="score-note">Note: <span id="noteScore">${note}</span>/20</div>
+                <div style="background: ${note >= 18 ? '#d4edda' : note >= 15 ? '#d1ecf1' : note >= 12 ? '#fff3cd' : note >= 10 ? '#ffe5cc' : '#f8d7da'}; border-left: 4px solid ${note >= 18 ? '#28a745' : note >= 15 ? '#17a2b8' : note >= 12 ? '#ffc107' : note >= 10 ? '#fd7e14' : '#dc3545'}; padding: 15px; border-radius: 8px; margin-top: 15px; color: ${note >= 18 ? '#155724' : note >= 15 ? '#0c5460' : note >= 12 ? '#856404' : note >= 10 ? '#721c24' : '#721c24'}; font-weight: 600;">${appreciation}</div>`;
+
+            document.getElementById('results').classList.add('show');
+            document.getElementById('printBtn').style.display = 'inline-block';
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function reinitialiser() {
+            createQuestions();
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('printBtn').style.display = 'none';
+        }
+
+        createQuestions();
+    </script>
+</body>
+</html>
