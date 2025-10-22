@@ -3,413 +3,964 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Exercices – Unité 1 : Environnement matériel d'un système informatique</title>
+  <title>Exercices – Unité 1 : Environnement matériel</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
+    html,body{height:100%;width:100%}
     body{
-      font-family: 'Inter', Arial, sans-serif;
-      background: linear-gradient(135deg,#667eea 0%,#764ba2 100%);
-      color:#222;
+      font-family: 'Poppins', 'Inter', sans-serif;
+      background:linear-gradient(135deg, #fff9e6 0%, #ffe6f0 25%, #e6f3ff 50%, #f0e6ff 75%, #fff9e6 100%);
       min-height:100vh;
-      padding:20px;
+      color:#1a202c;
+      display:flex;
+      overflow-x:hidden
     }
-    .container{max-width:1200px;margin:0 auto;position:relative;z-index:1}
-    .header{text-align:center;color:#fff;margin-bottom:30px}
-    .logo-placeholder{width:90px;height:90px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.12);margin-bottom:12px}
-    .logo-placeholder i{font-size:36px;color:#fff}
-    h1{font-size:clamp(1.4rem,3.2vw,2.4rem);margin-bottom:6px}
-    p.lead{color:rgba(255,255,255,0.9);margin-bottom:18px}
-    .section-title{color:#fff;font-size:1.3rem;margin:30px 0 15px 0;padding-left:10px;border-left:4px solid rgba(255,255,255,0.8)}
-    .exercises-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:20px;
-      margin-top:18px;
+
+    /* SIDEBAR */
+    .sidebar{
+      width:260px;
+      background:linear-gradient(135deg, #ffd89b 0%, #ff6b9d 50%, #fbbf24 100%);
+      padding:30px 20px;
+      /* color:#fff; */
+      position:fixed;
+      height:100vh;
+      overflow-y:auto;
+      box-shadow:4px 0 30px rgba(255, 165, 0, 0.3);
+      z-index:100;
+      left:0;
+      top:0
     }
-    .exercise-card{
-      background:#fff;border-radius:14px;padding:18px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 30px rgba(0,0,0,0.12);position:relative;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;
+
+    .sidebar::-webkit-scrollbar{width:6px}
+    .sidebar::-webkit-scrollbar-track{background:rgba(255,255,255,0.1)}
+    .sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.3);border-radius:3px}
+
+    .sidebar-logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:40px;
+      font-weight:800;
+      font-size:18px;
+      letter-spacing:0.5px
     }
-    .exercise-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.18)}
-    .exercise-top{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
-    .exercise-icon{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff}
-    .exercise-number{background:linear-gradient(135deg,#ff6b6b,#feca57);color:#fff;padding:6px 10px;border-radius:18px;font-weight:700;font-size:.85rem}
-    .devoir-badge{background:linear-gradient(135deg,#f093fb,#f5576c);color:#fff;padding:6px 10px;border-radius:18px;font-weight:700;font-size:.85rem}
-    .exercise-title{font-size:1.05rem;font-weight:700;color:#2c3e50}
-    .exercise-desc{color:#666;font-size:.95rem;line-height:1.3;text-align:left}
-    .start-row{display:flex;justify-content:center;align-items:center;margin-top:auto}
-    .start-btn{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:8px 14px;border-radius:22px;border:none;display:inline-flex;align-items:center;gap:8px;font-weight:600;cursor:pointer;transition:transform 0.2s}
-    .start-btn:hover{transform:scale(1.05)}
-    .footer{margin-top:40px;padding:0;border-radius:16px;background:#fff;color:#333;text-align:center;line-height:1.6;box-shadow:0 8px 30px rgba(0,0,0,0.12);overflow:hidden}
-    .footer-content{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:24px 20px;font-size:0.95rem}
-    .footer-content strong{display:block;font-size:1.1rem;margin-bottom:8px;font-weight:700}
-    .footer-bottom{background:#f8f9fa;padding:16px 20px;color:#666}
-    .footer-bottom small{display:block;font-size:0.9rem;line-height:1.5}
-    .footer-bottom .author{color:#667eea;font-weight:600;margin-top:6px;display:inline-block}
-    .footer-bottom .heart{color:#e74c3c;display:inline-block;animation:heartbeat 1.5s ease-in-out infinite}
-    @keyframes heartbeat{0%,100%{transform:scale(1)}10%,30%{transform:scale(1.1)}20%,40%{transform:scale(1)}}
-    .cours-btn{
-      display:inline-flex;
+
+    .sidebar-logo i{
+      width:45px;
+      height:45px;
+      background:rgba(255,255,255,0.25);
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:24px;
+      backdrop-filter:blur(10px)
+    }
+
+    .sidebar-nav{
+      display:flex;
+      flex-direction:column;
+      gap:8px
+    }
+
+    .sidebar-nav-item{
+      padding:12px 16px;
+      border-radius:12px;
+      cursor:pointer;
+      transition:all 0.3s;
+      font-weight:600;
+      font-size:14px;
+      display:flex;
       align-items:center;
       gap:10px;
-      background:rgba(255,255,255,0.95);
-      color:#667eea;
-      padding:14px 28px;
+      letter-spacing:0.3px;
+      /* color:rgba(255,255,255,0.8); */
+      background:rgba(255,255,255,0.1);
+      border:2px solid transparent
+    }
+
+    .sidebar-nav-item:hover{
+      background:rgba(255,255,255,0.2);
+      transform:translateX(5px);
+      color:#fff
+    }
+
+    .sidebar-nav-item.active{
+      background:rgba(255,255,255,0.3);
+      color:#fff;
+      box-shadow:0 4px 12px rgba(255,255,255,0.2);
+      border-color:rgba(255,255,255,0.5)
+    }
+
+    .sidebar-nav-item i{width:20px;text-align:center}
+
+    /* MAIN CONTENT */
+    .main-content{
+      margin-left:260px;
+      flex:1;
+      padding:40px;
+      overflow-y:auto;
+      width:calc(100% - 260px)
+    }
+
+    .main-content::-webkit-scrollbar{width:8px}
+    .main-content::-webkit-scrollbar-track{background:#f5f7fa}
+    .main-content::-webkit-scrollbar-thumb{background:linear-gradient(135deg, #667eea, #764ba2);border-radius:4px}
+
+    /* HEADER */
+    .header{
+      margin-bottom:50px;
+      padding:40px;
+      border-radius:25px;
+      background:linear-gradient(135deg, rgba(255, 216, 155, 0.15), rgba(255, 107, 157, 0.1));
+      backdrop-filter:blur(10px);
+      border:none;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:40px;
+      align-items:center;
+      box-shadow:0 8px 25px rgba(255, 165, 0, 0.12)
+    }
+
+    .header-left h1{
+      font-size:2.5rem;
+      font-weight:800;
+      margin-bottom:15px;
+      background:linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text
+    }
+
+    .header-left p{
+      color:#5a6b7a;
+      font-size:15px;
+      line-height:1.7;
+      margin-bottom:20px;
+      font-weight:600
+    }
+
+    .header-stats{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:15px
+    }
+
+    .stat{
+      background:rgba(255,255,255,0.7);
+      padding:15px;
+      border-radius:12px;
+      text-align:center;
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(102, 126, 234, 0.15)
+    }
+
+    .stat-number{
+      font-size:28px;
+      font-weight:800;
+      background:linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      margin-bottom:5px
+    }
+
+    .stat-label{
+      font-size:12px;
+      color:#5a6b7a;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:0.5px
+    }
+
+    .header-right{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:20px
+    }
+
+    .logo-big{
+      width:140px;
+      height:140px;
       border-radius:30px;
+      background:linear-gradient(135deg, #ff6b9d, #fbbf24);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-size:70px;
+      box-shadow:0 20px 60px rgba(255, 107, 157, 0.35);
+      animation:float 3s ease-in-out infinite
+    }
+
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-15px)}
+    }
+
+    .cours-btn{
+      background:linear-gradient(135deg, #ff6b9d, #fbbf24);
+      color:#fff;
+      padding:14px 32px;
+      border-radius:50px;
       text-decoration:none;
       font-weight:700;
-      font-size:1.05rem;
-      margin-top:20px;
-      box-shadow:0 6px 20px rgba(0,0,0,0.15);
-      transition:all 0.3s ease;
-      border:2px solid rgba(255,255,255,0.3);
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      border:none;
+      cursor:pointer;
+      box-shadow:0 10px 30px rgba(255, 107, 157, 0.3);
+      transition:all 0.3s;
+      display:inline-flex;
+      align-items:center;
+      gap:10px
     }
+
     .cours-btn:hover{
-      transform:translateY(-3px) scale(1.05);
-      box-shadow:0 10px 30px rgba(0,0,0,0.25);
+      transform:translateY(-3px);
+      box-shadow:0 15px 40px rgba(255, 107, 157, 0.4)
+    }
+
+    /* TABS */
+    .tabs{
+      display:flex;
+      gap:15px;
+      margin-bottom:40px;
+      overflow-x:auto;
+      padding-bottom:10px;
+      flex-wrap:wrap
+    }
+
+    .tab-btn{
+      padding:12px 24px;
+      border-radius:50px;
+      border:2px solid rgba(102, 126, 234, 0.2);
       background:#fff;
+      color:#5a6b7a;
+      font-weight:700;
+      cursor:pointer;
+      transition:all 0.3s;
+      white-space:nowrap;
+      font-size:14px;
+      letter-spacing:0.5px;
+      text-transform:uppercase
     }
-    .cours-btn i{
-      font-size:1.3rem;
-      animation:bounce 2s ease-in-out infinite;
+
+    .tab-btn:hover{
+      border-color:rgba(102, 126, 234, 0.5);
+      color:#667eea
     }
-    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-    @media (max-width:600px){body{padding:12px}.exercise-top{gap:8px}.cours-btn{padding:12px 22px;font-size:0.95rem}}
+
+    .tab-btn.active{
+      background:linear-gradient(135deg, #667eea, #764ba2);
+      color:#fff;
+      border-color:transparent;
+      box-shadow:0 8px 20px rgba(102, 126, 234, 0.3)
+    }
+
+    /* GRID */
+    .exercises-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+      gap:24px;
+      margin-bottom:40px
+    }
+
+    /* CARD */
+    .exercise-card{
+      background:#fff;
+      border-radius:20px;
+      overflow:hidden;
+      border:none;
+      transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+      box-shadow:0 4px 15px rgba(0,0,0,0.1);
+      display:flex;
+      flex-direction:column;
+      position:relative
+    }
+
+    .exercise-card:hover{
+      transform:translateY(-12px);
+      border-color:rgba(102, 126, 234, 0.4);
+      box-shadow:0 20px 50px rgba(102, 126, 234, 0.2)
+    }
+
+    .card-header{
+      background:linear-gradient(135deg, #ff6b9d, #fbbf24);
+      height:6px;
+      width:100%
+    }
+
+    .card-icon{
+      width:60px;
+      height:60px;
+      border-radius:15px;
+      background:linear-gradient(135deg, #ff6b9d, #fbbf24);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:28px;
+      margin:20px auto 15px;
+      box-shadow:0 8px 20px rgba(255, 107, 157, 0.25);
+      transition:transform 0.3s
+    }
+
+    .exercise-card:hover .card-icon{
+      transform:scale(1.1) rotate(10deg)
+    }
+
+    .card-content{
+      padding:0 20px 20px;
+      flex-grow:1;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      text-align:center
+    }
+
+    .card-number{
+      font-size:11px;
+      font-weight:800;
+      text-transform:uppercase;
+      background:linear-gradient(135deg, #ff6b9d, #fbbf24);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      letter-spacing:1.5px
+    }
+
+    .card-title{
+      font-size:1.2rem;
+      font-weight:800;
+      color:#1a202c;
+      line-height:1.2
+    }
+
+    .card-desc{
+      font-size:13px;
+      color:#5a6b7a;
+      line-height:1.5;
+      font-weight:500;
+      flex-grow:1
+    }
+
+    .card-badge{
+      background:linear-gradient(135deg, #ff6b9d, #fbbf24);
+      color:#fff;
+      padding:6px 12px;
+      border-radius:20px;
+      font-size:11px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+      display:inline-block;
+      margin:5px auto 0;
+      box-shadow:0 4px 12px rgba(255, 107, 157, 0.25)
+    }
+
+    .card-footer{
+      padding:15px 20px;
+      background:transparent;
+      border-top:none
+    }
+
+    .start-btn{
+      width:100%;
+      background:linear-gradient(135deg, #ff6b9d, #fbbf24);
+      color:#fff;
+      padding:11px 20px;
+      border-radius:12px;
+      border:none;
+      font-weight:700;
+      cursor:pointer;
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:0.8px;
+      transition:all 0.3s;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      box-shadow:0 6px 15px rgba(255, 107, 157, 0.2)
+    }
+
+    .start-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 25px rgba(255, 107, 157, 0.3)
+    }
+
+    /* SECTION LABEL */
+    .section-label{
+      font-size:18px;
+      font-weight:800;
+      color:#1a202c;
+      margin-bottom:25px;
+      margin-top:40px;
+      padding-bottom:15px;
+      border-bottom:none;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-transform:uppercase;
+      letter-spacing:1px
+    }
+
+    .section-label i{
+      background:linear-gradient(135deg, #ff6b9d, #fbbf24);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      font-size:24px
+    }
+
+    /* FOOTER */
+    .footer{
+      /* background:linear-gradient(135deg, #667eea, #764ba2); */
+      color:#000;
+      padding:40px;
+      border-radius:20px;
+      text-align:center;
+      margin-top:60px;
+      box-shadow:0 10px 40px rgba(102, 126, 234, 0.2)
+    }
+
+    .footer-content{
+      font-size:14px;
+      line-height:1.8;
+      font-weight:600;
+      margin-bottom:15px
+    }
+
+    .footer-author{
+      font-size:13px;
+      color:#000;
+      margin-top:15px;
+      font-weight:700
+    }
+
+    .footer-heart{
+      color:#ff6b9d;
+      animation:heartbeat 1.5s ease infinite
+    }
+
+    @keyframes heartbeat{
+      0%,100%{transform:scale(1)}
+      25%{transform:scale(1.3)}
+      50%{transform:scale(1)}
+    }
+
+    a{text-decoration:none;color:inherit}
+    @media (max-width:1024px){
+      .sidebar{width:220px}
+      .main-content{margin-left:220px;width:calc(100% - 220px);padding:30px}
+      .header{grid-template-columns:1fr;gap:30px}
+      .exercises-grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+    }
+
+    @media (max-width:768px){
+      .sidebar{
+        width:100%;
+        height:auto;
+        position:relative;
+        transform:none;
+        padding:20px
+      }
+      .main-content{
+        margin-left:0;
+        width:100%;
+        padding:20px
+      }
+      .header{
+        padding:25px;
+        border-radius:15px;
+        grid-template-columns:1fr
+      }
+      .header-left h1{font-size:1.8rem}
+      .exercises-grid{grid-template-columns:1fr;gap:15px}
+      .tabs{gap:10px}
+      .tab-btn{padding:10px 18px;font-size:12px}
+      .menu-toggle{display:none}
+    }
+
+    @media (max-width:480px){
+      body{flex-direction:column}
+      .sidebar{
+        width:100%;
+        order:-1
+      }
+      .main-content{
+        padding:15px;
+        width:100%
+      }
+      .header{
+        padding:20px;
+        margin-bottom:30px;
+        grid-template-columns:1fr
+      }
+      .header-left h1{font-size:1.5rem}
+      .logo-big{
+        width:100px;
+        height:100px;
+        font-size:50px
+      }
+      .exercises-grid{gap:12px}
+      .card-content{padding:0 15px 15px}
+      .footer{padding:25px;margin-top:40px}
+      .section-label{font-size:16px;margin-top:30px}
+    }
   </style>
+
+
+<link rel="icon" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/svgs/solid/graduation-cap.svg">
 </head>
 <body>
-  <div class="container">
-    <header class="header">
-      <div class="logo-placeholder"><i class="fas fa-graduation-cap"></i></div>
-      <h1>Unité 1 – Environnement matériel d'un système informatique</h1>
-      <p class="lead">Série d'exercices interactifs. Cliquez sur « Démarrer » pour ouvrir un exercice dans une nouvelle fenêtre.</p>
-      <a href="https://tabdellah.github.io/cours/" target="_blank" class="cours-btn">
-        <i class="fas fa-book-open"></i>
-        <span>Accéder aux Cours</span>
+  <!-- SIDEBAR NAVIGATION -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <i class="fas fa-graduation-cap"></i>
+      <span>EduTech</span>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-nav-item active" onclick="showTab('all', this)">
+        <i class="fas fa-th-large"></i> Tous
+      </div>
+      <div class="sidebar-nav-item" onclick="showTab('composants', this)">
+        <i class="fas fa-computer"></i> Composants
+      </div>
+      <div class="sidebar-nav-item" onclick="showTab('connectivity', this)">
+        <i class="fas fa-plug-circle-bolt"></i> Connectivité
+      </div>
+      <div class="sidebar-nav-item" onclick="showTab('units', this)">
+        <i class="fas fa-balance-scale"></i> Unités
+      </div>
+      <div class="sidebar-nav-item" onclick="showTab('internal', this)">
+        <i class="fas fa-microchip"></i> Internes
+      </div>
+      <div class="sidebar-nav-item" onclick="showTab('systems', this)">
+        <i class="fas fa-cogs"></i> Systèmes
+      </div>
+      <div class="sidebar-nav-item" onclick="showTab('os', this)">
+        <i class="fas fa-window-maximize"></i> OS
+      </div>
+      <div class="sidebar-nav-item" onclick="showTab('networks', this)">
+        <i class="fas fa-network-wired"></i> Réseaux
+      </div>
+    </nav>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-left">
+        <h1 style="text-align: center;">L’atelier du savoir numérique</h1>
+        <p style="text-align: center;">Série d'exercices interactifs. Cliquez sur « Démarrer » pour ouvrir un exercice dans une nouvelle fenêtre.</p>
+        <div class="header-stats">
+          <div class="stat">
+            <div class="stat-number">22</div>
+            <div class="stat-label">Exercices</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">7</div>
+            <div class="stat-label">Sections</div>
+          </div>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="logo-big"><i class="fas fa-graduation-cap"></i></div>
+        <a href="https://tabdellah.github.io/cours/" target="_blank" class="cours-btn">
+          <i class="fas fa-book-open"></i>Voir les cours
+        </a>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('all', this)">Tous</button>
+      <button class="tab-btn" onclick="showTab('composants', this)">Composants</button>
+      <button class="tab-btn" onclick="showTab('connectivity', this)">Connectivité</button>
+      <button class="tab-btn" onclick="showTab('units', this)">Unités</button>
+      <button class="tab-btn" onclick="showTab('internal', this)">Internes</button>
+      <button class="tab-btn" onclick="showTab('systems', this)">Systèmes</button>
+      <button class="tab-btn" onclick="showTab('os', this)">OS</button>
+      <button class="tab-btn" onclick="showTab('networks', this)">Réseaux</button>
+    </div>
+
+    <!-- SECTION 1 -->
+    <div class="section-label" data-section="composants"><i class="fas fa-computer"></i>Composants et périphériques</div>
+    <section class="exercises-grid composants-grid all-grid">
+      <a class="exercise-card" href="Exercice1_ordinateur.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-computer"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 1</div>
+          <div class="card-title">L'ordinateur</div>
+          <p class="card-desc">Découvrir les composants principaux.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
       </a>
-    </header>
 
-    <main>
-      <!-- Section 1: Composants et périphériques -->
-      <h2 class="section-title"><i class="fas fa-computer"></i> Composants et périphériques</h2>
-      <section class="exercises-grid">
-        <a class="exercise-card" href="Exercice1_ordinateur.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-computer"></i></div>
-            <div class="exercise-number">Exercice 1</div>
-            <div class="exercise-title">L'ordinateur</div>
-          </div>
-          <p class="exercise-desc">Découvrir les composants principaux d'un ordinateur.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
+      <a class="exercise-card" href="Exercice2_peripheriques.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-plug"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 2</div>
+          <div class="card-title">Périphériques externes</div>
+          <p class="card-desc">Identifier les différents périphériques.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
 
-        <a class="exercise-card" href="Exercice2_peripheriques.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-plug"></i></div>
-            <div class="exercise-number">Exercice 2</div>
-            <div class="exercise-title">Périphériques externes</div>
-          </div>
-          <p class="exercise-desc">Identifier les différents périphériques externes de l'ordinateur.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
+      <a class="exercise-card" href="Exercice3_peripheriques+fonctions.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-link"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 3</div>
+          <div class="card-title">Fonctions des périphériques</div>
+          <p class="card-desc">Relier chaque périphérique à sa fonction.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
 
-        <a class="exercise-card" href="Exercice3_peripheriques+fonctions.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-link"></i></div>
-            <div class="exercise-number">Exercice 3</div>
-            <div class="exercise-title">Fonctions des périphériques</div>
-          </div>
-          <p class="exercise-desc">Relier chaque périphérique avec sa fonction correspondante.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
+      <a class="exercise-card" href="Exercice4_entree+stortie.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-arrows-alt-h"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 4</div>
+          <div class="card-title">Entrée et sortie</div>
+          <p class="card-desc">Classer les périphériques.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
 
-        <a class="exercise-card" href="Exercice4_entree+stortie.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-arrows-alt-h"></i></div>
-            <div class="exercise-number">Exercice 4</div>
-            <div class="exercise-title">Entrée et sortie</div>
-          </div>
-          <p class="exercise-desc">Classer les périphériques selon leur catégorie : entrée ou sortie.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
+      <a class="exercise-card" href="Exercice5_ES+Stockage.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-th-large"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 5</div>
+          <div class="card-title">Classification complète</div>
+          <p class="card-desc">Classer tous les types de périphériques.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
+    </section>
 
-        <a class="exercise-card" href="Exercice5_ES+Stockage.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-th-large"></i></div>
-            <div class="exercise-number">Exercice 5</div>
-            <div class="exercise-title">Classification complète</div>
-          </div>
-          <p class="exercise-desc">Classer les périphériques : entrée, sortie, entrée/sortie et stockage.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
-      </section>
+    <!-- SECTION 2 -->
+    <div class="section-label" data-section="connectivity"><i class="fas fa-plug-circle-bolt"></i>Connectivité</div>
+    <section class="exercises-grid connectivity-grid all-grid">
+      <a class="exercise-card" href="Exercice6_connectivite1.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-plug-circle-bolt"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 6</div>
+          <div class="card-title">Périphériques et connecteurs</div>
+          <p class="card-desc">Associer chaque périphérique.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
 
-      <!-- Section 2: Connectivité -->
-      <h2 class="section-title"><i class="fas fa-plug-circle-bolt"></i> Connectivité</h2>
-      <section class="exercises-grid">
-        <a class="exercise-card" href="Exercice6_connectivite1.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-plug-circle-bolt"></i></div>
-            <div class="exercise-number">Exercice 6</div>
-            <div class="exercise-title">Périphériques et connecteurs</div>
-          </div>
-          <p class="exercise-desc">Associer chaque périphérique avec son connecteur approprié.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
+      <a class="exercise-card" href="Exercice7_connectivite1.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-ethernet"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 7</div>
+          <div class="card-title">Connecteurs et ports</div>
+          <p class="card-desc">Relier connecteurs et ports.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
+    </section>
 
-        <a class="exercise-card" href="Exercice7_connectivite1.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-ethernet"></i></div>
-            <div class="exercise-number">Exercice 7</div>
-            <div class="exercise-title">Connecteurs et ports</div>
-          </div>
-          <p class="exercise-desc">Relier chaque connecteur avec son port correspondant.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
-      </section>
+    <!-- SECTION 3 -->
+    <div class="section-label" data-section="units"><i class="fas fa-balance-scale"></i>Unités de mesure</div>
+    <section class="exercises-grid units-grid all-grid">
+      <a class="exercise-card" href="Exercice8_uniteesdeMesures.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-sort-amount-up"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 8</div>
+          <div class="card-title">Unités de mesure</div>
+          <p class="card-desc">Classer les unités correctement.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
 
-      <!-- Section 3: Unités de mesure -->
-      <h2 class="section-title"><i class="fas fa-balance-scale"></i> Unités de mesure</h2>
-      <section class="exercises-grid">
-        <a class="exercise-card" href="Exercice8_uniteesdeMesures.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-sort-amount-up"></i></div>
-            <div class="exercise-number">Exercice 8</div>
-            <div class="exercise-title">Unités de mesure</div>
-          </div>
-          <p class="exercise-desc">Classer les unités de mesure de la plus petite à la plus grande.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
+      <a class="exercise-card" href="Exercice9_les unites de mesures.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-calculator"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 9</div>
+          <div class="card-title">Les unités de mesure</div>
+          <p class="card-desc">Approfondir vos connaissances.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
+    </section>
 
-        <a class="exercise-card" href="Exercice9_les unites de mesures.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-calculator"></i></div>
-            <div class="exercise-number">Exercice 9</div>
-            <div class="exercise-title">Les unités de mesure</div>
-          </div>
-          <p class="exercise-desc">Approfondir la compréhension des unités de mesure informatiques.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
-      </section>
+    <!-- SECTION 4 -->
+    <div class="section-label" data-section="internal"><i class="fas fa-microchip"></i>Composants internes</div>
+    <section class="exercises-grid internal-grid all-grid">
+      <a class="exercise-card" href="Exercice10_composantesInterne.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-microchip"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 10</div>
+          <div class="card-title">Composants internes</div>
+          <p class="card-desc">Identifier visuellement.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
 
-      <!-- Section 4: Composants internes -->
-      <h2 class="section-title"><i class="fas fa-microchip"></i> Composants internes</h2>
-      <section class="exercises-grid">
-        <a class="exercise-card" href="Exercice10_composantesInterne.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-microchip"></i></div>
-            <div class="exercise-number">Exercice 10</div>
-            <div class="exercise-title">Composants internes</div>
-          </div>
-          <p class="exercise-desc">Identifier visuellement les composants internes de l'ordinateur.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
+      <a class="exercise-card" href="Exercice11_composantesInterne+fonctions.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-puzzle-piece"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 11</div>
+          <div class="card-title">Fonctions des composants</div>
+          <p class="card-desc">Associer chaque composant.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
 
-        <a class="exercise-card" href="Exercice11_composantesInterne+fonctions.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-puzzle-piece"></i></div>
-            <div class="exercise-number">Exercice 11</div>
-            <div class="exercise-title">Fonctions des composants</div>
-          </div>
-          <p class="exercise-desc">Associer chaque composant interne à sa fonction correcte.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
+      <a class="exercise-card" href="Exercice12_composantesInterne+noms.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-search"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 12</div>
+          <div class="card-title">Nommer les composants</div>
+          <p class="card-desc">Écrire le nom correct.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
+    </section>
 
-        <a class="exercise-card" href="Exercice12_composantesInterne+noms.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-search"></i></div>
-            <div class="exercise-number">Exercice 12</div>
-            <div class="exercise-title">Nommer les composants</div>
-          </div>
-          <p class="exercise-desc">Regarder l'image du composant et écrire son nom correct.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
-      </section>
+    <!-- SECTION 5 -->
+    <div class="section-label" data-section="systems"><i class="fas fa-cogs"></i>Systèmes et codage</div>
+    <section class="exercises-grid systems-grid all-grid">
+      <a class="exercise-card" href="Exercice13_binaire.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-cogs"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 13</div>
+          <div class="card-title">Traitement des données</div>
+          <p class="card-desc">Comprendre le parcours.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
 
-      <!-- Section 5: Systèmes et codage -->
-      <h2 class="section-title"><i class="fas fa-microchip"></i> Systèmes et codage</h2>
-      <section class="exercises-grid">
-        <a class="exercise-card" href="Exercice13_binaire.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-cogs"></i></div>
-            <div class="exercise-number">Exercice 12</div>
-            <div class="exercise-title">Traitement des données</div>
-          </div>
-          <p class="exercise-desc">Comprendre le parcours des données dans l'ordinateur (exemple : appui sur une touche)</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
+      <a class="exercise-card" href="Exercice14_systeme_informatique.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-desktop"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 14</div>
+          <div class="card-title">Système informatique</div>
+          <p class="card-desc">Découvrir l'architecture.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
 
-        <a class="exercise-card" href="Exercice14_systeme_informatique.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-desktop"></i></div>
-            <div class="exercise-number">Exercice 13</div>
-            <div class="exercise-title">Système informatique</div>
-          </div>
-          <p class="exercise-desc">Découvrir l'architecture globale d'un système informatique.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
+      <a class="exercise-card" href="Exercice30.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-pencil-alt"></i></div>
+        <div class="card-content">
+          <div class="card-number">Devoir</div>
+          <div class="card-title">Synthèse et évaluation</div>
+          <p class="card-desc">Appliquer vos connaissances.</p>
+          <div class="card-badge">Évaluation</div>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
+    </section>
 
-        <a class="exercise-card" href="Exercice30.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-pencil-alt"></i></div>
-            <div class="devoir-badge">Devoir</div>
-            <div class="exercise-title">Synthèse et évaluation</div>
-          </div>
-          <p class="exercise-desc">Appliquer vos connaissances dans un devoir pratique et complet.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
-      </section>
+    <!-- SECTION 6 -->
+    <div class="section-label" data-section="os"><i class="fas fa-window-maximize"></i>Systèmes d'exploitation</div>
+    <section class="exercises-grid os-grid all-grid">
+      <a class="exercise-card" href="exercice15_bureau_windows.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-window-maximize"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 15</div>
+          <div class="card-title">Bureau Windows</div>
+          <p class="card-desc">Se familiariser avec l'environnement.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
 
-      <!-- Section 6: Systèmes d'exploitation -->
-      <h2 class="section-title"><i class="fas fa-window-maximize"></i> Systèmes d'exploitation</h2>
-      <section class="exercises-grid">
-        <a class="exercise-card" href="exercice15_bureau_windows.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-window-maximize"></i></div>
-            <div class="exercise-number">Exercice 15</div>
-            <div class="exercise-title">Bureau Windows</div>
-          </div>
-          <p class="exercise-desc">Se familiariser avec l'environnement du bureau Windows.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
+      <a class="exercise-card" href="exercice16_elements_bureau.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-icons"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 16</div>
+          <div class="card-title">Éléments du bureau</div>
+          <p class="card-desc">Identifier les différents éléments.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
 
-        <a class="exercise-card" href="exercice16_elements_bureau.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-icons"></i></div>
-            <div class="exercise-number">Exercice 16</div>
-            <div class="exercise-title">Éléments du bureau</div>
-          </div>
-          <p class="exercise-desc">Identifier les différents éléments présents sur le bureau.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
+      <a class="exercise-card" href="exercice17_noms_des_systemes_d'exploitation.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 17</div>
+          <div class="card-title">Systèmes d'exploitation</div>
+          <p class="card-desc">Reconnaître les différents OS.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
 
-        <a class="exercise-card" href="exercice17_noms_des_systemes_d'exploitation.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-laptop-code"></i></div>
-            <div class="exercise-number">Exercice 17</div>
-            <div class="exercise-title">Systèmes d'exploitation</div>
-          </div>
-          <p class="exercise-desc">Reconnaître les différents systèmes d'exploitation.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
+      <a class="exercise-card" href="exercice18_OS_Device.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 18</div>
+          <div class="card-title">Système et appareil</div>
+          <p class="card-desc">Associer OS à l'appareil.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
+    </section>
 
-        <a class="exercise-card" href="exercice18_système_d’exploitation_l’appareil.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-mobile-alt"></i></div>
-            <div class="exercise-number">Exercice 18</div>
-            <div class="exercise-title">Système et appareil</div>
-          </div>
-          <p class="exercise-desc">Associer chaque système d'exploitation à son appareil.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
-      </section>
+    <!-- SECTION 7 -->
+    <div class="section-label" data-section="networks"><i class="fas fa-network-wired"></i>Réseaux informatiques</div>
+    <section class="exercises-grid networks-grid all-grid">
+      <a class="exercise-card" href="Exercice19_équipements_réseau.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-server"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 19</div>
+          <div class="card-title">Équipements réseau</div>
+          <p class="card-desc">Découvrir les équipements.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
 
-      <!-- Section 7: Réseaux -->
-      <h2 class="section-title"><i class="fas fa-network-wired"></i> Réseaux informatiques</h2>
-      <section class="exercises-grid">
-        <a class="exercise-card" href="Exercice19_équipements_réseau.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-server"></i></div>
-            <div class="exercise-number">Exercice 19</div>
-            <div class="exercise-title">Équipements réseau</div>
-          </div>
-          <p class="exercise-desc">Découvrir les différents équipements utilisés dans un réseau.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
+      <a class="exercise-card" href="Exercice20_equipement_LAN.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-sitemap"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 20</div>
+          <div class="card-title">Équipement LAN</div>
+          <p class="card-desc">Identifier les équipements LAN.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
 
-        <a class="exercise-card" href="Exercice20_equipement_LAN.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-sitemap"></i></div>
-            <div class="exercise-number">Exercice 20</div>
-            <div class="exercise-title">Équipement LAN</div>
-          </div>
-          <p class="exercise-desc">Identifier les équipements spécifiques d'un réseau local (LAN).</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
+      <a class="exercise-card" href="Exercice21_nom_des_equipements_LAN.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-tag"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 21</div>
+          <div class="card-title">Nom des équipements LAN</div>
+          <p class="card-desc">Nommer correctement.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
 
-        <a class="exercise-card" href="Exercice21_nom_des_equipements_LAN.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-tag"></i></div>
-            <div class="exercise-number">Exercice 21</div>
-            <div class="exercise-title">Nom des équipements LAN</div>
-          </div>
-          <p class="exercise-desc">Nommer correctement les équipements d'un réseau local.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
+      <a class="exercise-card" href="Exercice22_les_mots_croisee_du_réseau _local.html" target="_blank">
+        <div class="card-header"></div>
+        <div class="card-icon"><i class="fas fa-th"></i></div>
+        <div class="card-content">
+          <div class="card-number">Exercice 22</div>
+          <div class="card-title">Mots croisés du réseau</div>
+          <p class="card-desc">Résoudre les mots croisés.</p>
+        </div>
+        <div class="card-footer">
+          <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </a>
+    </section>
 
-        <a class="exercise-card" href="Exercice22_les_mots_croisee_du_réseau _local.html" target="_blank">
-          <div class="exercise-top">
-            <div class="exercise-icon"><i class="fas fa-th"></i></div>
-            <div class="exercise-number">Exercice 22</div>
-            <div class="exercise-title">Mots croisés du réseau</div>
-          </div>
-          <p class="exercise-desc">Résoudre des mots croisés sur le vocabulaire des réseaux locaux.</p>
-          <div class="start-row">
-            <button class="start-btn">Démarrer <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </a>
-      </section>
-    </main>
-
-    <footer class="footer">
+    <!-- FOOTER -->
+    <div class="footer">
       <div class="footer-content">
-        <strong>© 2025-2026 Tous droits réservés</strong>
+        <strong>© 2025-2026 Tous droits réservés</strong><br>
         Académie Régionale de l'Éducation et de la Formation – Région Souss Massa<br>
         Direction Provinciale Inzegane Aït Melloul<br>
         Collège Othmane Ibn Affane
       </div>
-      <div class="footer-bottom">
-        <small>
-          Conception et réalisation : <span class="author">Abdellah TAHTOH</span><br>
-          Fait avec <span class="heart">❤</span> au service de l'éducation numérique
-        </small>
+      <div class="footer-author">
+        Conception et réalisation : <strong>Abdellah TAHTOH</strong><br>
+        Fait avec <span class="footer-heart">❤</span> au service de l'éducation numérique
       </div>
-    </footer>
+    </div>
   </div>
-</body>
-</html>
+
+  <script>
+    function showTab(tab, element) {
+      // Update active button/nav item
+      if (element.classList) {
+        document.querySelectorAll('.tab-btn, .sidebar-nav-item').forEach(el => {
+          el.classList.remove('active');
+        });
+        if (element.classList.contains('tab-btn') || element.classList.contains('sidebar-nav-item')) {
+          element.classList.add('active');
+        }
+      }
+
+      // Show/hide sections
+      const allGrids = document.querySelectorAll('.exercises-grid');
+      
+      if (tab === 'all') {
+        allGrids.forEach(grid => grid.style.display = 'grid');
+        document.querySelectorAll('.section-label').forEach(label => label.style.display = 'flex');
+      } else {
+        allGrids.forEach(grid => grid.style.display = 'none');
+        document.querySelectorAll('.section-label').forEach(label => label.style.display = 'none');
+        
+        const targetGrids = document.querySelectorAll(`.${tab}-grid`);
+        const targetLabels = document.querySelectorAll(`[data-section="${tab}"]`);
+        
+        targetGrids.forEach(grid => grid.style.display = 'grid');
+        targetLabels.forEach(label => label.style.display = 'flex');
+      }
+    }
+  </script>
