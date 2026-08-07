@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Parcours numérique d'apprentissage de l'informatique - 2e année collégiale">
+  <title>Informatique 2AC — Parcours numérique</title>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-icon"><i class="fa-solid fa-laptop-code"></i></div>
+      <div><strong>INFO 2AC</strong><span>Parcours numérique</span></div>
+    </div>
+    <nav>
+      <a class="nav-link active" href="#accueil"><i class="fa-solid fa-house"></i>Accueil</a>
+      <a class="nav-link" href="#parcours"><i class="fa-solid fa-road"></i>Mon parcours</a>
+      <a class="nav-link" href="#unites"><i class="fa-solid fa-book-open"></i>Unités</a>
+      <a class="nav-link" href="#competences"><i class="fa-solid fa-bullseye"></i>Compétences</a>
+      <a class="nav-link" href="#enseignant"><i class="fa-solid fa-chalkboard-user"></i>Espace enseignant</a>
+    </nav>
+    <div class="sidebar-footer">2e année collégiale</div>
+  </aside>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="hero-copy">
+        <span class="eyebrow">INFORMATIQUE • 2AC</span>
+        <h1>Apprendre l'informatique<br><span>en pratiquant.</span></h1>
+        <p>Un parcours organisé autour de situations-problèmes, de découvertes, de leçons synthétiques, de travaux pratiques et d'évaluations de compétences.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#unites"><i class="fa-solid fa-play"></i> Commencer le parcours</a>
+          <button class="btn secondary" id="teacherToggle"><i class="fa-solid fa-chalkboard-user"></i> Mode enseignant</button>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <h2>4 unités • 1 progression</h2>
+        <p>Comprendre → Communiquer → Produire → Programmer</p>
+        <div class="mini-progress"><span style="width:25%"></span></div>
+        <small>Le site mémorisera progressivement l'avancement sur cet appareil.</small>
+      </div>
+    </section>
+
+    <section class="section" id="parcours">
+      <div class="section-heading">
+        <span class="kicker">PROGRESSION</span>
+        <h2>Un parcours cohérent sur l'année</h2>
+        <p>Chaque unité développe une compétence et prépare la suivante.</p>
+      </div>
+      <div class="timeline">
+        <div class="step u1"><span>1</span><div><strong>Environnement informatique</strong><small>Comprendre le système informatique</small></div></div>
+        <div class="arrow">→</div>
+        <div class="step u2"><span>2</span><div><strong>Échange d'informations</strong><small>Communiquer sur un réseau local</small></div></div>
+        <div class="arrow">→</div>
+        <div class="step u3"><span>3</span><div><strong>Tableur</strong><small>Produire un document de calcul</small></div></div>
+        <div class="arrow">→</div>
+        <div class="step u4"><span>4</span><div><strong>Programmation</strong><small>Produire un programme LOGO</small></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="unites">
+      <div class="section-heading">
+        <span class="kicker">UNITÉS</span>
+        <h2>Choisir une unité</h2>
+        <p>Les contenus actuels restent disponibles pendant la migration vers ce parcours unifié.</p>
+      </div>
+      <div class="units-grid">
+        <article class="unit-card u1">
+          <div class="unit-top"><span class="unit-icon"><i class="fa-solid fa-desktop"></i></span><span class="badge">U1</span></div>
+          <h3>Environnement informatique</h3>
+          <p>Ordinateur, périphériques, composants, connectique, système informatique et premières notions réseau.</p>
+          <div class="meta"><span><i class="fa-solid fa-bullseye"></i> C31</span><span><i class="fa-solid fa-layer-group"></i> Découverte</span></div>
+          <div class="pedagogy"><span>Situation</span><span>Découverte</span><span>Leçon</span><span>Exercices</span><span>TP</span><span>Évaluation</span></div>
+          <a class="unit-link" href="../index.html">Ouvrir les ressources U1 <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+
+        <article class="unit-card u2">
+          <div class="unit-top"><span class="unit-icon"><i class="fa-solid fa-network-wired"></i></span><span class="badge">U2</span></div>
+          <h3>Échange d'informations</h3>
+          <p>Réseau local, adresse IP, partage des ressources, accès distant local, communication et comportement responsable.</p>
+          <div class="meta"><span><i class="fa-solid fa-bullseye"></i> C32</span><span><i class="fa-solid fa-users"></i> Collaboration</span></div>
+          <div class="pedagogy"><span>Situation</span><span>Hypothèses</span><span>Manipulation</span><span>Bilan</span><span>Mission</span><span>Évaluation</span></div>
+          <a class="unit-link" href="https://tabdellah.github.io/u2/">Ouvrir les ressources U2 <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+
+        <article class="unit-card u3">
+          <div class="unit-top"><span class="unit-icon"><i class="fa-solid fa-table-cells"></i></span><span class="badge">U3</span></div>
+          <h3>Tableur</h3>
+          <p>Cellules, formules, fonctions, mise en forme et résolution de problèmes à travers des situations proches du quotidien.</p>
+          <div class="meta"><span><i class="fa-solid fa-bullseye"></i> C12</span><span><i class="fa-solid fa-file-excel"></i> Production</span></div>
+          <div class="pedagogy"><span>Découverte</span><span>Formules</span><span>Fonctions</span><span>TP</span><span>Projet</span><span>Évaluation</span></div>
+          <a class="unit-link" href="https://tabdellah.github.io/u3/">Ouvrir les ressources U3 <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+
+        <article class="unit-card u4">
+          <div class="unit-top"><span class="unit-icon"><i class="fa-solid fa-code"></i></span><span class="badge">U4</span></div>
+          <h3>Programmation LOGO</h3>
+          <p>Analyser, décomposer, programmer, tester et corriger pour construire progressivement des figures et des programmes.</p>
+          <div class="meta"><span><i class="fa-solid fa-bullseye"></i> C13</span><span><i class="fa-solid fa-code"></i> Programmation</span></div>
+          <div class="pedagogy"><span>Problème</span><span>Analyse</span><span>Code</span><span>Test</span><span>Correction</span><span>Projet</span></div>
+          <a class="unit-link" href="https://tabdellah.github.io/u4/">Ouvrir les ressources U4 <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="competences">
+      <div class="section-heading">
+        <span class="kicker">MODÈLE DE SÉANCE</span>
+        <h2>Une même démarche pour toutes les leçons</h2>
+      </div>
+      <div class="lesson-flow">
+        <div><b>1</b><span>Situation-problème</span></div>
+        <div><b>2</b><span>Je découvre</span></div>
+        <div><b>3</b><span>Je retiens</span></div>
+        <div><b>4</b><span>Je m'entraîne</span></div>
+        <div><b>5</b><span>Je pratique</span></div>
+        <div><b>6</b><span>Je m'évalue</span></div>
+        <div><b>7</b><span>Remédiation</span></div>
+      </div>
+
+      <div class="sample-lesson">
+        <div class="lesson-header">
+          <div><span class="kicker">EXEMPLE • U1</span><h3>Les périphériques</h3></div>
+          <div class="lesson-tags"><span>⏱ 1 h</span><span>🎯 C31</span><span>👥 Binômes</span></div>
+        </div>
+        <div class="lesson-grid">
+          <article class="phase-card situation"><span>01</span><h4>Situation-problème</h4><p>Un ordinateur vient d'être installé sans périphériques. Quels équipements faut-il ajouter pour saisir, afficher, imprimer et stocker des informations ?</p></article>
+          <article class="phase-card"><span>02</span><h4>Je découvre</h4><p>Observer les périphériques présents dans la salle et proposer une première classification selon leur rôle.</p></article>
+          <article class="phase-card remember"><span>03</span><h4>Je retiens</h4><p>Un périphérique est un équipement connecté à l'ordinateur. Il peut assurer l'entrée, la sortie, le stockage ou plusieurs fonctions.</p></article>
+          <article class="phase-card"><span>04</span><h4>Je m'entraîne</h4><p>Utiliser les exercices existants de U1 pour classer et identifier les périphériques.</p></article>
+          <article class="phase-card practice"><span>05</span><h4>Je pratique</h4><p>Compléter une fiche réelle : nom du périphérique, type, fonction et connecteur utilisé.</p></article>
+          <article class="phase-card assess"><span>06</span><h4>Je m'évalue</h4><p>Mini-évaluation formative suivie d'une activité de remédiation ciblée en cas d'erreur.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section teacher-zone" id="enseignant">
+      <div class="section-heading">
+        <span class="kicker">ESPACE ENSEIGNANT</span>
+        <h2>Le scénario derrière la séance</h2>
+        <p>Cette zone devient visible en activant le mode enseignant.</p>
+      </div>
+      <div class="teacher-grid">
+        <article><i class="fa-solid fa-list-check"></i><h3>Objectifs</h3><p>Objectifs opérationnels et compétence visée pour chaque séance.</p></article>
+        <article><i class="fa-solid fa-clock"></i><h3>Déroulement</h3><p>Phases, durée indicative et organisation du travail en classe.</p></article>
+        <article><i class="fa-solid fa-people-group"></i><h3>Rôles</h3><p>Activités de l'enseignant et activités attendues des apprenants.</p></article>
+        <article><i class="fa-solid fa-screwdriver-wrench"></i><h3>Remédiation</h3><p>Difficultés prévisibles, aides, différenciation et prolongements.</p></article>
+      </div>
+    </section>
+
+    <footer>
+      <strong>Informatique — 2e année collégiale</strong>
+      <span>Prototype du parcours unifié • U1 + U2 + U3 + U4</span>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
