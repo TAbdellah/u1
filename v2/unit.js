@@ -1,0 +1,1 @@
+const toggle=document.querySelector('.teacher-toggle');toggle?.addEventListener('click',()=>{document.body.classList.toggle('teacher-mode');const on=document.body.classList.contains('teacher-mode');toggle.textContent=on?'Élève':'Enseignant';if(on)document.querySelector('.teacher-note')?.scrollIntoView({behavior:'smooth'});});
